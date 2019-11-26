@@ -1,6 +1,8 @@
 package org.raquel.pokedex.actividades;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +28,7 @@ public class FavoritesActivity extends AppCompatActivity implements PokemonAdapt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_favoritos);
 
         recyclerView = findViewById(R.id.gridview_pokemon);
 
@@ -37,6 +39,16 @@ public class FavoritesActivity extends AppCompatActivity implements PokemonAdapt
         adapter = new PokemonAdapter(this, favoritePokemons);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar supportActionBar = getSupportActionBar();
+
+        if(supportActionBar != null){
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+            supportActionBar.setDisplayShowHomeEnabled(true);
+        }
+
     }
 
     @Override
@@ -55,4 +67,12 @@ public class FavoritesActivity extends AppCompatActivity implements PokemonAdapt
         intent.putExtra("URL", selectedPokemon.getUrl());
         startActivity(intent);
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        super.onSupportNavigateUp();
+        onBackPressed();
+        return true;
+    }
+
 }

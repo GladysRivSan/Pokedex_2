@@ -1,7 +1,9 @@
 package org.raquel.pokedex.actividades;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -61,6 +63,16 @@ public class PokemonDetailsActivity extends AppCompatActivity implements AsyncTa
         pokemonDetailsAsyncTask.execute(url);
 
         database = AppDatabase.getDatabase(this);
+
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar supportActionBar = getSupportActionBar();
+
+        if(supportActionBar != null){
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+            supportActionBar.setDisplayShowHomeEnabled(true);
+        }
     }
 
     @Override
@@ -127,5 +139,12 @@ public class PokemonDetailsActivity extends AppCompatActivity implements AsyncTa
 
         // Show
         dialog.show();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        super.onSupportNavigateUp();
+        onBackPressed();
+        return true;
     }
 }

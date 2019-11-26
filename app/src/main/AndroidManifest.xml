@@ -23,19 +23,14 @@
 
         <activity
             android:name="org.raquel.pokedex.actividades.FavoritesActivity"
-            android:parentActivityName=".actividades.MainActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:label="Favoritos">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
         </activity>
 
         <activity
             android:name="org.raquel.pokedex.actividades.PokemonDetailsActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:label="Pokémon">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
         </activity>
 
         <activity
