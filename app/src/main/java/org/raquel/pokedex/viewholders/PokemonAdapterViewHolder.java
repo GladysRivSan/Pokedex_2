@@ -20,7 +20,7 @@ public class PokemonAdapterViewHolder extends RecyclerView.ViewHolder implements
         mClickListener = listener;
         pokemonName = itemView.findViewById(R.id.pokemonName);
         pokemonImage = itemView.findViewById(R.id.pokemonImage);
-        itemView.setOnClickListener(this);
+        itemView.setOnClickListener(this); 
     }
 
     @Override
