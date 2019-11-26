@@ -14,14 +14,16 @@ import com.bumptech.glide.Glide;
 
 import org.raquel.pokedex.R;
 import org.raquel.pokedex.modelos.Pokemon;
+import org.raquel.pokedex.viewholders.PokemonAdapter2ViewHolder;
+import org.raquel.pokedex.viewholders.PokemonAdapterViewHolder;
 
 import java.util.List;
 
-public class PokemonAdapter2 extends RecyclerView.Adapter<PokemonAdapter2.ViewHolder> {
+public class PokemonAdapter2 extends RecyclerView.Adapter<PokemonAdapter2ViewHolder> {
 
     private List<Pokemon> mData;
     private LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
+    private PokemonAdapter2.ItemClickListener mClickListener;
     private Context mContext;
 
     // data is passed into the constructor
@@ -34,14 +36,14 @@ public class PokemonAdapter2 extends RecyclerView.Adapter<PokemonAdapter2.ViewHo
     // inflates the cell layout from xml when needed
     @Override
     @NonNull
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PokemonAdapter2ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.pokemon_item2, parent, false);
-        return new ViewHolder(view);
+        return new PokemonAdapter2ViewHolder(view, mClickListener);
     }
 
     // binds the data to the TextView in each cell
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PokemonAdapter2ViewHolder holder, int position) {
         Pokemon pokemon = mData.get(position);
 
         Glide.with(mContext).load(pokemon.getImage()).into(holder.pokemonImage);
@@ -54,32 +56,13 @@ public class PokemonAdapter2 extends RecyclerView.Adapter<PokemonAdapter2.ViewHo
         return mData.size();
     }
 
-
-    // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView pokemonName;
-        ImageView pokemonImage;
-
-        ViewHolder(View itemView) {
-            super(itemView);
-            pokemonName = itemView.findViewById(R.id.pokemonName);
-            pokemonImage = itemView.findViewById(R.id.pokemonImage);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
-        }
-    }
-
     // convenience method for getting data at click position
     public Pokemon getPokemon(int id) {
         return mData.get(id);
     }
 
     // allows clicks events to be caught
-    public void setClickListener(ItemClickListener itemClickListener) {
+    public void setClickListener(PokemonAdapter2.ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
 
