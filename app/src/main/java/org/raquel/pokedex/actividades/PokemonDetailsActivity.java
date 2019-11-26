@@ -44,7 +44,6 @@ public class PokemonDetailsActivity extends AppCompatActivity implements AsyncTa
         setContentView(R.layout.activity_pokemon_details);
 
 
-
         image = findViewById(R.id.pokemonImage);
         favorite = findViewById(R.id.pokemonFavorite);
         name = findViewById(R.id.pokemonName);
@@ -84,7 +83,7 @@ public class PokemonDetailsActivity extends AppCompatActivity implements AsyncTa
         favoritePokemon = database.pokemonDao().findByName(details.getName());
 
         if (favoritePokemon != null) {
-            Glide.with(this).load(R.drawable.favorite).into(favorite);
+            Glide.with(this).load(R.drawable.estrellaamarilla).into(favorite);
         }
     }
 
@@ -100,7 +99,7 @@ public class PokemonDetailsActivity extends AppCompatActivity implements AsyncTa
         else {
             Pokemon pokemon = new Pokemon(pokemonName, url);
             database.pokemonDao().insertAll(pokemon);
-            Glide.with(this).load(R.drawable.favorite).into(favorite);
+            Glide.with(this).load(R.drawable.estrellaamarilla).into(favorite);
         }
     }
 
@@ -114,7 +113,7 @@ public class PokemonDetailsActivity extends AppCompatActivity implements AsyncTa
             public void onClick(DialogInterface dialog, int id) {
                 database.pokemonDao().delete(favoritePokemon);
                 favoritePokemon = null;
-                Glide.with(context).load(R.drawable.favorite_empty).into(favorite);
+                Glide.with(context).load(R.drawable.estrellablanca).into(favorite);
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {

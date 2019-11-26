@@ -7,7 +7,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Pokedex"
+        android:label="Pokédex"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -23,7 +23,8 @@
 
         <activity
             android:name="org.raquel.pokedex.actividades.FavoritesActivity"
-            android:parentActivityName=".actividades.MainActivity">
+            android:parentActivityName=".actividades.MainActivity"
+            android:label="Favoritos">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -31,7 +32,7 @@
 
         <activity
             android:name="org.raquel.pokedex.actividades.PokemonDetailsActivity"
-            android:parentActivityName=".actividades.MainActivity">
+            android:label="Pokémon">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -39,10 +40,8 @@
 
         <activity
             android:name="org.raquel.pokedex.actividades.PokemonTypeActivity"
-            android:parentActivityName=".actividades.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".actividades.MainActivity" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:label="Tipo">
         </activity>
 
         <meta-data

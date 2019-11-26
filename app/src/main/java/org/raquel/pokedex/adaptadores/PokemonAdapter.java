@@ -14,10 +14,11 @@ import com.bumptech.glide.Glide;
 
 import org.raquel.pokedex.R;
 import org.raquel.pokedex.modelos.Pokemon;
+import org.raquel.pokedex.viewholders.PokemonAdapterViewHolder;
 
 import java.util.List;
 
-public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHolder> {
+public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapterViewHolder> {
 
     private List<Pokemon> mData;
     private LayoutInflater mInflater;
@@ -34,14 +35,14 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHold
     // inflates the cell layout from xml when needed
     @Override
     @NonNull
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PokemonAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.pokemon_item, parent, false);
-        return new ViewHolder(view);
+        return new PokemonAdapterViewHolder(view, mClickListener);
     }
 
     // binds the data to the TextView in each cell
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PokemonAdapterViewHolder holder, int position) {
         Pokemon pokemon = mData.get(position);
 
         Glide.with(mContext).load(pokemon.getImage()).into(holder.pokemonImage);
@@ -52,25 +53,6 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHold
     @Override
     public int getItemCount() {
         return mData.size();
-    }
-
-
-    // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView pokemonName;
-        ImageView pokemonImage;
-
-        ViewHolder(View itemView) {
-            super(itemView);
-            pokemonName = itemView.findViewById(R.id.pokemonName);
-            pokemonImage = itemView.findViewById(R.id.pokemonImage);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
-        }
     }
 
     // convenience method for getting data at click position
